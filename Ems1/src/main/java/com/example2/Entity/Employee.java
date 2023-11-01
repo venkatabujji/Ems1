@@ -1,14 +1,6 @@
 package com.example2.Entity;
-
-
-
-
-
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,8 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name="employee")
 public class Employee 
 {
-	
-	
 	 @Id
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
 		@Column(length= 10)
@@ -42,13 +32,6 @@ public class Employee
 		
 		@Column(length = 15)
 		private String salary;
-		
-		//one employees - one user
-		@OneToOne(cascade = CascadeType.PERSIST, fetch= FetchType.LAZY)
-		@JoinColumn(name="userid")
-		@JsonIgnoreProperties("users")
-		private User user;
-		
 		
 	}
 
