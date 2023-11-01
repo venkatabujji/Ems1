@@ -43,7 +43,11 @@ public class DepartmentController
 	{
 		return departmentservice.getDepartmentById(dept_id);
 	}
-	
+	@PostMapping("/addDepartment")
+	public Department addDepartment(@RequestBody Department department)
+	{
+		return departmentservice.addDepartment(department);
+	}
 	
 	@PutMapping("/updateDepartment/{dept_id}")
 	public Department updateDepartment(@PathVariable("dept_id") int dept_id, @RequestBody Department department)
