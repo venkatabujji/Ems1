@@ -50,4 +50,10 @@ public class UserController
 	public List<User> getAllusers(){
 		return  userService.getAllusers();
 	}
+
+	@PostMapping("/assigndepartment/{did}/{eid}")
+	public String assignDepartmentToEmployee(@PathVariable int did,@PathVariable int eid)
+	{
+		return eservice.assignDepartmentToEmployee(did,eid);
+	}
 }
