@@ -1,14 +1,11 @@
 package com.example2.ServiceImple;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import com.example2.DTO.EmployeeDTO;
 import com.example2.Entity.Employee;
 import com.example2.Exception.ResourceNotFoundException;
@@ -27,10 +24,6 @@ public class EmployeeServiceImple implements EmployeeService
 	@Autowired
 	private Converter converter;
 	
-	
-	
-
-	
 	@Override
 	public List<Employee> getAllEmployees()
 	{
@@ -38,23 +31,14 @@ public class EmployeeServiceImple implements EmployeeService
 		ArrayList<Employee> employees=new  ArrayList<>(employeeList);
 		return employees;
 	}
-	
-	
-/*	@Override
-	public Employee getEmployeeById(int id);
-	{
-		try
-		{
-		Employee employee=employeeRepository.findById(id);
-		return employee;
-		}
-		catch(Exception e)
-		{
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-	*/
-	
 
+	public Employee addEmployee(Employee employee)
+	{
+		employeeRepository.save(employee);
+		return employee;
+	}
+	
+	
 	@Override
 	public Employee updateEmployee(int emp_id, Employee employee)
 	{
@@ -107,10 +91,11 @@ public class EmployeeServiceImple implements EmployeeService
 
 
 	@Override
-	public Optional<Employee> getEmployeeById(int id) {
+	public Employee getEmployeeById(int id) {
+		// TODO Auto-generated method stub
 		try
 		{
-		Optional<Employee> employee=employeeRepository.findById(id);
+			Employee employee=employeeRepository.findById(id).get();
 		return employee;
 		}
 		catch(Exception e)
@@ -118,6 +103,9 @@ public class EmployeeServiceImple implements EmployeeService
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	
+	
 }
 	
 	
